@@ -79,7 +79,8 @@ def mad_libs():
 #             else:
     
 def anagram(input_string):
-    ''' takes a word and returns every possible combination of letters
+    ''' takes a word and 
+    returns every possible combination of letters
     '''
     word_string = input_string
     new_strings = []
