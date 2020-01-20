@@ -1,4 +1,4 @@
-
+from clean_text import clean
 
 def tuple_hist(source):
     ''' Fastest - tuples are immutable. List of tuples: [('hello', 3), ('what', 4)]
@@ -8,7 +8,7 @@ def tuple_hist(source):
     histo = []
     used = []
 
-    text = source.split()
+    text = clean(source)
     # print(text)
 
     for word in text:
@@ -26,7 +26,7 @@ def tuple_hist(source):
         instance = (word, counter)
         histo.append(instance)
 
-    print(histo)
+    # print(histo)
     return histo
 
 
@@ -39,7 +39,8 @@ def list_hist(source):
     histo = []
     used = []
 
-    text = source.split()
+    text = clean(source)
+
     # print(text)
 
     for word in text:
@@ -56,7 +57,7 @@ def list_hist(source):
         instance = [word, counter]
         histo.append(instance)
 
-    print(histo)
+    # print(histo)
     return histo
 
 def dict_hist(source):
@@ -76,7 +77,7 @@ def dict_hist(source):
         else:
             histo_dict[word] = 1
         
-    print(histo_dict)
+    # print(histo_dict)
     return histo_dict
 
 
@@ -124,10 +125,40 @@ def counts_list(source):
         
         histo.append(new_instance)
 
-    print(histo)
+    # print(histo)
     return histo
 
 
+
+def unique_words(histo):
+    ''' takes a histogram and returns the number of unique words in it.
+    '''
+    counter = 0
+    for item in histo:
+        if type(item[0]) == int: # if the first item is an integer
+            for word in item[1]:
+                # print(item[1])
+                counter += 1
+        else:
+            # print(item)
+            counter += 1
+    # print(counter)
+    return counter
+
+def frequency(word, histo):
+    ''' takes a word and histo, returns the frequency of that word in the histo
+    '''
+    for item in histo:
+        if word in item:
+            freq = 0
+            if type(item[0]) == int: # if the first item is an integer
+                freq = item[0]
+            else:
+                freq = item[1]
+            # print("{} freq: {}".format(word, freq))
+            return freq
+
+    return print("dne")
 
 
 
@@ -135,8 +166,14 @@ def counts_list(source):
 
 if __name__ == '__main__':
     source = 'one fish two fish red fish blue fish'
-    list_hist(source)
-    tuple_hist(source)
-    dict_hist(source)
-    counts_list(source)
-   
+    listo_histo = list_hist("source.txt")
+    print(listo_histo)
+    tuple_histo = tuple_hist("source.txt")
+    print(tuple_histo)
+    print(dict_hist(source))
+    print(counts_list(source))
+    print('')
+    print(unique_words(list_hist("source.txt")))
+    print(unique_words(counts_list(source)))
+    frequency('blue', list_hist("source.txt"))
+    frequency('fish', list_hist("source.txt"))
