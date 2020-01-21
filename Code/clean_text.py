@@ -16,7 +16,9 @@ def clean(source):
             string = []
             for char in word:
                 if char not in punctuations:
-                    string += char.lower()      # lowercase char added to string
+                    string += char.lower() 
+                elif char == '...':
+                    string += (' ')     # lowercase char added to string
             string = ''.join(string)            # chars joined together
             clean.append(string)                # individual strings added to clean ['blah', 'blah', ...]
         # clean = ' '.join(clean)               # turns into one big string

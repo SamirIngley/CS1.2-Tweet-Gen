@@ -68,7 +68,7 @@ def dict_hist(source):
     histo_dict = {}
     used = []
 
-    text = source.split()
+    text = clean(source)
     # print(text)
 
     for word in text:
@@ -87,7 +87,7 @@ def counts_list(source):
     instances = []
     used = []
 
-    text = source.split()
+    text = clean(source)
     # print(text)
 
     for word in text:
