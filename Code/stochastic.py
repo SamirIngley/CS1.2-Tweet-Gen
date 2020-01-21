@@ -12,11 +12,12 @@ def stoch(histo):
 
     for item in histo:
         freq = frequency(item[0], histo)
-        perc = freq / total_wc
+        perc = (freq / total_wc) * 100
         instance = (item[0], perc)
         percentages.append(instance)
     
     return percentages
+
 
 if __name__ == "__main__":
     listo_histo = list_hist("source.txt")
