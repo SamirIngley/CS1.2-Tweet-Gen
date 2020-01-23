@@ -9,8 +9,8 @@ def clean(source):
         # print(word_list)
 
         # removes punctuation and makes all lowercase
-        punctuations = '''()[]{};:'"\<>/?@#$%^&*_~.'''
-        # removed punct: - , !
+        punctuations = '''()[]{};:'"\<>/?@#$%^&*_~.!'''
+        # removed punct: - , 
 
         for word in word_list:
             string = []

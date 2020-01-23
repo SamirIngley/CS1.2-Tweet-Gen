@@ -1,4 +1,5 @@
 import random
+import sys
 
 def dictionary_words(num):
     file = open("/usr/share/dict/words", "r")
@@ -22,4 +23,6 @@ def dictionary_words(num):
 
 
 if __name__ == '__main__':
-    print(dictionary_words(3))
+    args = sys.argv
+    # print(args[1:]) # list
+    print(dictionary_words(int(args[1:][0])))

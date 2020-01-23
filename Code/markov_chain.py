@@ -11,7 +11,7 @@ class Markov():
     def chain(self):
 
         last_word = None
-
+ 
         for word in self.corpus:
             if last_word is not None: # set last word line 14
 
@@ -25,19 +25,17 @@ class Markov():
         return str(self.states)
 
 
-    def random_walk(self, num_words=5):
+    def random_walk(self, num_words=15):
         
         sentence = []
 
         length = len(self.states)
 
-        words_counter = 0
         last_word = None
-        add_words = True
 
         while len(sentence) < num_words:            
             # print(sentence)
-            if last_word:
+            if last_word: # selects word based on probabilities
                 pickings = self.states[last_word] # dictionary of words to pick from based on last_word's hist
                 # print(pickings)
                 total_wc = 0 # number of words in dictionary for last word

@@ -62,12 +62,25 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
+        node = Node(item)
+
+        if not self.head:
+            self.head = node
+        else: 
+            current = self.head
+            while current:
+                current = current.next
+                current.next = node
+        
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+        node = Node(item)
+        node.next = self.head
+        self.head = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
