@@ -1,0 +1,3 @@
+
+def stochastic(histo):
+    
