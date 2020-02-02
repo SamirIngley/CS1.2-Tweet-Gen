@@ -148,6 +148,20 @@ class LinkedList(object):
             prev.next = current.next
         return
 
+def replace(self, item):
+    current = self.head
+    found = None
+    
+    while not found and current:
+        if current.data == item:
+            found = True
+        else:
+            current = current.next
+    
+    if current == None:
+        return ValueError('Item not found: {}'.format(item))
+    else:
+        current.data = item
 
 def test_linked_list():
     ll = LinkedList()
