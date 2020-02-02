@@ -8,22 +8,22 @@ def random_rearrange(input_string):
     words = input_string.split(' ')
 
     len_words = len(words)
-    print(words)
+    # print(words)
     # print(len(words))
     word_list = []
 
     for index in range(len_words): # from 0 to 3; range starts at 0, length is 3
         len_words = len_words -1
         rand = random.randint(0, len_words)
-        print('rand', rand)
+        # print('rand', rand)
         word = words.pop(rand)
-        print('word', word)
+        # print('word', word)
         word_list.append(word)    
     # print(word_list)
 
     space = ' '
     sentence = space.join(word_list)
-    print(sentence)
+    # print(sentence)
     return sentence
 
 
@@ -34,7 +34,7 @@ def reverse_order(input_string):
 
     # input_string = input("enter words: ")
     words = input_string.split(' ')
-    print(words)
+    # print(words)
 
     length = len(words) - 1
     word_list = []
@@ -42,11 +42,11 @@ def reverse_order(input_string):
     for word in words:
         word_list.append(words[length])
         length -= 1
-    print(word_list)
+    # print(word_list)
 
     space = ' '
     sentence = space.join(word_list)
-    print(sentence)
+    # print(sentence)
     return sentence
 
 
@@ -113,7 +113,7 @@ def anagram(input_string):
             index+=1
 
     print(*new_strings, sep = '\n')
-    return 
+    return
     
 
 
@@ -211,10 +211,10 @@ class LinkedList():
 if __name__ == '__main__':
     input_string = 'hello yellow fellow'
     anagram_string = 'super'
-    random_rearrange(input_string)
-    reverse_order(input_string)
+    print(random_rearrange(input_string))
+    print(reverse_order(input_string))
     # mad_libs()
-    anagram(anagram_string)
+    print(anagram(anagram_string))
 
     # linked_list = LinkedList()
     # linked_list.insert('a')

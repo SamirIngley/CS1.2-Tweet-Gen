@@ -14,17 +14,17 @@ def prob_sample(histo):
     counter = 0
     word = None
     
-    for pair in words:
+    for pair in words:          # pair = word and freq in percent
         if counter < dart:
-            counter += pair[1]
+            counter += pair[1]  # since words already in percent - we just keep adding til we hit the dart
             word = pair[0]
-
-    return dart, counter, word
+        else:
+            return dart, counter, word
 
 
 if __name__ == "__main__" :
     listo_histo = list_hist("source.txt")
-    dicto_histo = dict_hist("source.txt")
-    print(dicto_histo)
+    # dicto_histo = dict_hist("source.txt")
+    # print(dicto_histo)
     print(prob_sample(listo_histo))
-    print(prob_sample(dicto_histo))
+    # print(prob_sample(dicto_histo))

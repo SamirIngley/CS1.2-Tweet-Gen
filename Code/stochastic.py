@@ -2,41 +2,23 @@ import random
 from histogram import unique_words, frequency, list_hist
 
 def stoch(histo):
-    ''' Lists
+    ''' Lists  list_hist
     Stochastic sampling means taking an element from a given collection at random 
-    This returns a list of percentages of words in a histogram
+    This returns a list of percentages of word frequencies in a histogram
     '''
 
     percentages = []
 
-    total_wc = 0
+    total_wc = 0    # total word count
     for item in histo:
-        if type(item[0]) == int:
-            total_wc += int(item[0])
-        else:
-            total_wc += int(item[1])
+        total_wc += int(item[1])
 
     for item in histo:
-        if type(item[0]) == int: 
-            freq = frequency(item[1], histo)
-            perc = (freq / total_wc) * 100
-            instance = (item[1], perc)
-            percentages.append(instance)
-        else:
-            freq = frequency(item[0], histo)
-            perc = (freq / total_wc) * 100
-            instance = (item[0], perc)
-            percentages.append(instance)
+        percent = (item[1] / total_wc) * 100   # calculate percentage based on freq / total
+        instance = (item[0], percent)
+        percentages.append(instance)
 
     return percentages
-
-def dict_stoch(diction):
-    ''' dictionary percentages
-    takes in a dictionary, returns percentages to be sampled
-    '''
-    percentages = {}
-    
-    for keys,values in diction.items():
 
         
 

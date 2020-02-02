@@ -1,4 +1,5 @@
 from clean_text import clean
+from benchmark import bench
 
 def tuple_hist(source):
     ''' Fastest - tuples are immutable. List of tuples: [('hello', 3), ('what', 4)]
@@ -66,7 +67,7 @@ def dict_hist(source):
     text and keeps a running total. Used list account for no repeats.'''
 
     histo_dict = {}
-    used = []
+    # used = []
 
     text = clean(source)
     # print(text)
@@ -158,8 +159,6 @@ def frequency(word, histo):
             # print("{} freq: {}".format(word, freq))
             return freq
 
-    return print("dne")
-
 
 
 
@@ -170,10 +169,14 @@ if __name__ == '__main__':
     print(listo_histo)
     tuple_histo = tuple_hist("source.txt")
     print(tuple_histo)
-    print(dict_hist(source))
-    print(counts_list(source))
+    print(dict_hist('source.txt'))
+    print(counts_list('source.txt'))
     print('')
     print(unique_words(list_hist("source.txt")))
-    print(unique_words(counts_list(source)))
-    frequency('blue', list_hist("source.txt"))
-    frequency('fish', list_hist("source.txt"))
+    print(unique_words(counts_list('source.txt')))
+    print('freq of fish: ', frequency('fish', list_hist("source.txt")))
+    print('freq of tax: ', frequency('tax', list_hist("source.txt")))
+    print('freq of i: ', frequency('i', list_hist("source.txt")))
+    print('benchmark for list hist: ', bench(listo_histo))
+    print('benchmark for dict hist: ', bench(dict_hist('source.txt')))
+    print('benchmark for tuple hist: ', bench(tuple_histo))
