@@ -75,7 +75,6 @@ class Markov():
                 # print(last_word)
 
             sentence.append(last_word)
-            # print(sentence)
             # print(len(sentence))
             
         space = ' '
