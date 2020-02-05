@@ -1,0 +1,12 @@
+
+class Node(object):
+    
+    def __init__(self, data, next_node=None, prev_node=None):
+        ''' Initialize previous node for doubly linked list''' 
+        self.next_node = next_node
+        self.prev_node = prev_node
+        self.data = data
+    
+    def __repr__(self, data):
+        ''' Return a string representation of node'''
+        return 'Node({!r})'.format(self.data)
