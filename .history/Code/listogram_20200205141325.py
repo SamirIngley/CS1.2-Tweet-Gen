@@ -32,7 +32,7 @@ class Listogram(list):
             self[index][1] += count
         # second case: word dne --> append instance of word
         else:
-            self.append('hello')
+            self.append([word, count])
 
 
 

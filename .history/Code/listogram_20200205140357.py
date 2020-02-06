@@ -15,7 +15,6 @@ class Listogram(list):
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
-        word_list = word_list.split()
         if word_list is not None:
             for word in word_list:
                 self.add_count(word)
@@ -26,13 +25,15 @@ class Listogram(list):
 
         # add a count to tokens
         self.tokens += count
-        # first case: word exists -> increment count for that word
-        if self.__contains__(word):
-            index = self.index_of(word)
-            self[index][1] += count
+        # first case: word exists -> increment count
+        for item in self:
+            if item[0] == word: 
+                item[1] += count
         # second case: word dne --> append instance of word
-        else:
-            self.append('hello')
+            elif self.index_of(item) == self[-1]:
+                self.types += count
+                self.append([word, count])
+                
 
 
 

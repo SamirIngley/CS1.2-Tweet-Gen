@@ -2,7 +2,6 @@
 
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
-from sample import prob_sample
 
 
 class Listogram(list):
@@ -15,7 +14,6 @@ class Listogram(list):
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
-        word_list = word_list.split()
         if word_list is not None:
             for word in word_list:
                 self.add_count(word)
@@ -23,20 +21,13 @@ class Listogram(list):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
-
-        # add a count to tokens
         self.tokens += count
-        # first case: word exists -> increment count for that word
-        if self.__contains__(word):
-            index = self.index_of(word)
-            self[index][1] += count
-        # second case: word dne --> append instance of word
-        else:
-            self.append('hello')
-
-
-
-        
+        for item in self:
+            if item[0] == word:
+                item[1] += count
+            else:
+                self.types += count
+                self.append([word, count])
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
@@ -45,34 +36,20 @@ class Listogram(list):
             if item[0] == word:
                 return item[1]
         return 0
-
+        
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
-        for item in self:
-            if item[0] == word:
-                return True
-        return False
 
     def index_of(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
-        for i in range(len(self)):
-            if target == self[i]:
-                return i
-        return None
-
-        # for item in self:
-        #     if item[0] == target:
-        #         return self.index(item)
-        # return None
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
-        return prob_sample(self)
 
 
 def print_histogram(word_list):

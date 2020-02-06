@@ -19,7 +19,7 @@ def prob_sample(histo):
             counter += pair[1]  # since words already in percent - we just keep adding til we hit the dart
             word = pair[0]
         else:
-            return word
+            return dart, counter, word
 
 
 if __name__ == "__main__" :

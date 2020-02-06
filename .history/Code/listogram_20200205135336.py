@@ -15,7 +15,6 @@ class Listogram(list):
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
-        word_list = word_list.split()
         if word_list is not None:
             for word in word_list:
                 self.add_count(word)
@@ -23,20 +22,17 @@ class Listogram(list):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
-
-        # add a count to tokens
-        self.tokens += count
-        # first case: word exists -> increment count for that word
-        if self.__contains__(word):
-            index = self.index_of(word)
-            self[index][1] += count
-        # second case: word dne --> append instance of word
-        else:
-            self.append('hello')
-
-
-
+        # first case: word exists -> increment count
         
+        # second case: word dne --> append instance of word
+
+        self.tokens += count
+        for item in self:
+            if item[0] == word: 
+                item[1] += count
+            elif item == self[-1]:
+                self.types += count
+                self.append([word, count])
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
@@ -63,10 +59,10 @@ class Listogram(list):
                 return i
         return None
 
-        # for item in self:
-        #     if item[0] == target:
-        #         return self.index(item)
-        # return None
+        for item in self:
+            if item[0] == target:
+                return self.index(item)
+        return None
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
