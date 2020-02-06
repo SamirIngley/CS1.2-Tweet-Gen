@@ -12,15 +12,20 @@ def prob_sample(histo):
 
     dart = random.randint(0, 100)
     counter = 0
-    word = None
-    
-    for pair in words:          # pair = word and freq in percent
-        if counter < dart:
-            counter += pair[1]  # since words already in percent - we just keep adding til we hit the dart
-            word = pair[0]
-        else:
-            return word
 
+    print(words)
+    print(dart)
+    
+    
+    for pair in words:   # pair = word, freq in percent
+        
+        print(counter)       
+        print(pair)
+        counter += pair[1]  # since words already in percent - we just keep adding til we hit the dart
+        word = pair[0]
+        if counter >= dart:
+            return word
+    
 
 if __name__ == "__main__" :
     listo_histo = list_hist("source.txt")

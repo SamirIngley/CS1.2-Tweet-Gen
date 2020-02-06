@@ -19,7 +19,6 @@ def tuple_hist(source):
             continue
         
         used.append(word)
-        print("hello")
         for word2 in text: 
             if word == word2:
                 counter += 1
@@ -28,7 +27,7 @@ def tuple_hist(source):
         histo.append(instance)
 
     # print(histo)
-    print('USED: ', used)
+    # print('USED: ', used)
     return histo
 
 
@@ -45,14 +44,14 @@ def list_hist(source):
 
     # print(text)
 
-    for word in text:
+    for word in text: 
         counter = 0
         if word in used:
             continue
         
         used.append(word)
 
-        for word2 in text:
+        for word2 in text: #source to text
             if word == word2:
                 counter += 1
         
@@ -165,19 +164,19 @@ def frequency(word, histo):
 
 
 if __name__ == '__main__':
-    source = 'one fish two fish red fish blue fish'
+    # source = 'one fish two fish red fish blue fish'
     listo_histo = list_hist("source.txt")
-    # print(listo_histo)
-    tuple_histo = tuple_hist(source)
-    print(tuple_histo)
+    print(listo_histo)
+    # tuple_histo = tuple_hist(source)
+    # print(tuple_histo)
     # print(dict_hist('source.txt'))
     # print(counts_list('source.txt'))
-    print('')
-    print(unique_words(list_hist("source.txt")))
-    print(unique_words(counts_list('source.txt')))
-    print('freq of fish: ', frequency('fish', list_hist("source.txt")))
-    print('freq of tax: ', frequency('tax', list_hist("source.txt")))
-    print('freq of i: ', frequency('i', list_hist("source.txt")))
-    print('benchmark for list hist: ', bench(listo_histo))
-    print('benchmark for dict hist: ', bench(dict_hist('source.txt')))
-    print('benchmark for tuple hist: ', bench(tuple_histo))
+    # print('')
+    # print(unique_words(list_hist("source.txt")))
+    # print(unique_words(counts_list('source.txt')))
+    # print('freq of fish: ', frequency('fish', list_hist("source.txt")))
+    # print('freq of tax: ', frequency('tax', list_hist("source.txt")))
+    # print('freq of i: ', frequency('i', list_hist("source.txt")))
+    # print('benchmark for list hist: ', bench(listo_histo))
+    # print('benchmark for dict hist: ', bench(dict_hist('source.txt')))
+    # print('benchmark for tuple hist: ', bench(tuple_histo))
