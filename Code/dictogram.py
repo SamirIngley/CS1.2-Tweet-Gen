@@ -22,23 +22,21 @@ class Dictogram(dict):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
-        for key, value in self.items():
-
-            if word == key:
-                value += count
-                self.tokens += count
-            else: 
-                self[word] = count
-                self.tokens += count
-                self.types += count
+        
+        self.tokens += 1
+        if word in self.keys():
+            self[word] += count
+        else:
+            self[word] = count 
+            self.types += 1
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
         for key, value in self.items():
             if word == key:
-                freq = value
-                return freq
+                return value
+        return 0
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
@@ -55,7 +53,19 @@ class Dictogram(dict):
             instance = (key, percent)
             percentages.append(instance)
 
-        return percentages
+        word = None
+        counter = 1
+        items = self.items()
+       
+        rand = random.randint(0, len(items))
+
+        for item in percentages:
+            counter += item[1]
+            word = item[0]
+            if counter >= rand:
+                return word
+            
+        return 
 
 
         
