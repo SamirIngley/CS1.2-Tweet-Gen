@@ -4,6 +4,7 @@ from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
 
 
+
 class Dictogram(dict):
     """Dictogram is a histogram implemented as a subclass of the dict type."""
 
@@ -21,25 +22,41 @@ class Dictogram(dict):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
-        if word in self:
-            self[word] += count
-            self.tokens += count
-        else: 
-            self[word] = count
-            self.tokens += count
-            self.types += count
+        for key, value in self.items():
+
+            if word == key:
+                value += count
+                self.tokens += count
+            else: 
+                self[word] = count
+                self.tokens += count
+                self.types += count
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-        if word in self:
-            freq = self[word]
-            return freq
+        for key, value in self.items():
+            if word == key:
+                freq = value
+                return freq
 
-    # def sample(self):
-    #     """Return a word from this histogram, randomly sampled by weighting
-    #     each word's probability of being chosen by its observed frequency."""
-    #     # TODO: Randomly choose a word based on its frequency in this histogram
+    def sample(self):
+        """Return a word from this histogram, randomly sampled by weighting
+        each word's probability of being chosen by its observed frequency."""
+        # TODO: Randomly choose a word based on its frequency in this histogram
+        percentages = []
+
+        total_wc = 0    # total word count
+        for value in self.values():
+            total_wc += int(value)
+
+        for key, value in self.items():
+            percent = (value / total_wc) * 100   # calculate percentage based on freq / total
+            instance = (key, percent)
+            percentages.append(instance)
+
+        return percentages
+
 
         
 
