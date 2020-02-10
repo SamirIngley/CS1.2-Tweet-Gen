@@ -8,10 +8,9 @@ def tuple_hist(source):
     '''
     histo = []
     used = []
-    text = source.split()
-    # text = clean(source)
+    # text = source.split()
+    text = clean(source)
     # print(text)
-
     for word in text:
         # see if we've used the word before
         counter = 0
@@ -167,8 +166,8 @@ if __name__ == '__main__':
     # source = 'one fish two fish red fish blue fish'
     listo_histo = list_hist("source.txt")
     print(listo_histo)
-    # tuple_histo = tuple_hist(source)
-    # print(tuple_histo)
+    tuple_histo = tuple_hist("source.txt")
+    print(tuple_histo)
     # print(dict_hist('source.txt'))
     # print(counts_list('source.txt'))
     # print('')
