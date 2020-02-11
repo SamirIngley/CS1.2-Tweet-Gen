@@ -23,7 +23,7 @@ class Dictogram(dict):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
         
-        self.tokens += count
+        self.tokens += 1
         if word in self.keys():
             self[word] += count
         else:
@@ -43,6 +43,7 @@ class Dictogram(dict):
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
         percentages = []
+
         total_wc = 0    # total word count
         for value in self.values():
             total_wc += int(value)
@@ -51,19 +52,17 @@ class Dictogram(dict):
             percent = (value / total_wc) * 100   # calculate percentage based on freq / total
             instance = (key, percent)
             percentages.append(instance)
-        # print(percentages)
+
         word = None
-        counter = 0
+        counter = 1
         items = self.items()
-        # print(items)
-        rand = random.randint(0, 100)
+       
+        rand = random.randint(0, len(items))
 
         for item in percentages:
             counter += item[1]
             word = item[0]
             if counter >= rand:
-                # print(counter, rand)
-                # print(word)
                 return word
             
         return 

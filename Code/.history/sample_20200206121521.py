@@ -16,11 +16,13 @@ def prob_sample(histo):
     # print(words)
     # print(dart)
     
+    
     for pair in words:   # pair = word, freq in percent
+        
         # print(counter)       
         # print(pair)
-        counter += pair[1]  # add til we cross the dart
-        word = pair[0] 
+        counter += pair[1]  # since words already in percent - we just keep adding til we hit the dart
+        word = pair[0]
         if counter >= dart:
             return word
     

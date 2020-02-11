@@ -79,6 +79,7 @@ class LinkedList(object):
         # TODO: Append node after tail, if it exists
         node = Node(item)
 
+# use tail !!!! much easier.. just like prepend. 
         if not self.head:
             self.head = node
         else: 
@@ -99,6 +100,8 @@ class LinkedList(object):
         """
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+
+        # check if empty!
         node = Node(item)
         node.next = self.head
         self.head = node
@@ -120,7 +123,7 @@ class LinkedList(object):
         while not quality(item):
             current = current.next
 
-        return current
+        return current.data
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.

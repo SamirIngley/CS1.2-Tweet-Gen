@@ -23,7 +23,7 @@ class Dictogram(dict):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
         
-        self.tokens += count
+        self.tokens += 1
         if word in self.keys():
             self[word] += count
         else:
@@ -51,19 +51,19 @@ class Dictogram(dict):
             percent = (value / total_wc) * 100   # calculate percentage based on freq / total
             instance = (key, percent)
             percentages.append(instance)
-        # print(percentages)
+        print(percentages)
         word = None
-        counter = 0
+        counter = 1
         items = self.items()
-        # print(items)
-        rand = random.randint(0, 100)
-
+        print(items)
+        rand = random.randint(0, len(items))
+        print(rand)
         for item in percentages:
             counter += item[1]
             word = item[0]
             if counter >= rand:
-                # print(counter, rand)
-                # print(word)
+                print(counter, rand)
+                print(word)
                 return word
             
         return 

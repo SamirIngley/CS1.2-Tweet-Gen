@@ -133,24 +133,21 @@ def counts_list(source):
 def unique_words(histo):
     ''' takes a histogram and returns the number of unique words in it.
     '''
-    return len(histo)
-    # counter = 0
-    # for item in histo:
-    #     if type(item[0]) == int: # if the first item is an integer
-    #         for word in item[1]:
-    #             # print(item[1])
-    #             counter += 1
-    #     else:
-    #         # print(item)
-    #         counter += 1
-    # # print(counter)
-    # return counter
+    counter = 0
+    for item in histo:
+        if type(item[0]) == int: # if the first item is an integer
+            for word in item[1]:
+                # print(item[1])
+                counter += 1
+        else:
+            # print(item)
+            counter += 1
+    # print(counter)
+    return counter
 
 def frequency(word, histo):
     ''' takes a word and histo, returns the frequency of that word in the histo
     '''
-    return histo[word]
-
     for item in histo:
         if word in item:
             freq = 0
@@ -174,9 +171,9 @@ if __name__ == '__main__':
     # print(dict_hist('source.txt'))
     # print(counts_list('source.txt'))
     # print('')
-    print(unique_words(list_hist("source.txt")))
+    # print(unique_words(list_hist("source.txt")))
     # print(unique_words(counts_list('source.txt')))
-    print('freq of fish: ', frequency('the', listo_histo))
+    # print('freq of fish: ', frequency('fish', list_hist("source.txt")))
     # print('freq of tax: ', frequency('tax', list_hist("source.txt")))
     # print('freq of i: ', frequency('i', list_hist("source.txt")))
     # print('benchmark for list hist: ', bench(listo_histo))

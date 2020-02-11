@@ -149,17 +149,16 @@ def unique_words(histo):
 def frequency(word, histo):
     ''' takes a word and histo, returns the frequency of that word in the histo
     '''
-    return histo[word]
-
-    for item in histo:
-        if word in item:
-            freq = 0
-            if type(item[0]) == int: # if the first item is an integer
-                freq = item[0]
-            else:
-                freq = item[1]
-            # print("{} freq: {}".format(word, freq))
-            return freq
+    return histo[word][0]
+    # for item in histo:
+    #     if word in item:
+    #         freq = 0
+    #         if type(item[0]) == int: # if the first item is an integer
+    #             freq = item[0]
+    #         else:
+    #             freq = item[1]
+    #         # print("{} freq: {}".format(word, freq))
+    #         return freq
 
 
 

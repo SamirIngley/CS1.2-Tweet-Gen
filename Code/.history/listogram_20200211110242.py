@@ -2,19 +2,20 @@
 
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 import random
+from sample import prob_sample
 
 
-
-class Dictogram(dict):
-    """Dictogram is a histogram implemented as a subclass of the dict type."""
+class Listogram(list):
+    """Listogram is a histogram implemented as a subclass of the list type. Consists of tuples !! """
 
     def __init__(self, word_list=None):
-        """Initialize this histogram as a new dict and count given words."""
-        super(Dictogram, self).__init__()  # Initialize this as a new dict
+        """Initialize this histogram as a new list and count given words."""
+        super(Listogram, self).__init__()  # Initialize this as a new list
         # Add properties to track useful word counts for this histogram
         self.types = 0  # Count of distinct word types in this histogram
         self.tokens = 0  # Total count of all word tokens in this histogram
         # Count words in given list, if any
+        # word_list = word_list.split()
         if word_list is not None:
             for word in word_list:
                 self.add_count(word)
@@ -22,62 +23,72 @@ class Dictogram(dict):
     def add_count(self, word, count=1):
         """Increase frequency count of given word by given count amount."""
         # TODO: Increase word frequency by count
-        
+
+        # add count to tokens
         self.tokens += count
-        if word in self.keys():
-            self[word] += count
+        # first case: word exists -> increment count for that word
+        # print(instance)
+        if self.__contains__(word) == True:
+            index = self.index_of(word)
+            # print(index)
+            value = self.pop(index)
+            new_val = value[1] + count
+            self.append((word, new_val))
+            # self[index][1] += count    # for list
+        # second case: word dne --> append instance of word
         else:
-            self[word] = count 
+            self.append((word, count))
+            # self.append([word, count])
             self.types += 1
+        
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-        for key, value in self.items():
-            if word == key:
-                return value
+        for item in self:
+            if item[0] == word:
+                return item[1]
         return 0
+
+    def __contains__(self, word):
+        """Return boolean indicating if given word is in this histogram."""
+        # TODO: Check if word is in this histogram
+        for item in self:
+            if item[0] == word:
+                return True
+        return False
+
+    def index_of(self, target):
+        """Return the index of entry containing given target word if found in
+        this histogram, or None if target word is not found."""
+        # TODO: Implement linear search to find index of entry with target word
+        print(self)
+        for i in range(len(self)):
+            # print(i)
+            if target == self[i][0]:
+                # print(self[i][0])
+                return int(i)
+        return None
+
+        # for item in self:
+        #     if item[0] == target:
+        #         return self.index(item)
+        # return None
 
     def sample(self):
         """Return a word from this histogram, randomly sampled by weighting
         each word's probability of being chosen by its observed frequency."""
         # TODO: Randomly choose a word based on its frequency in this histogram
-        percentages = []
-        total_wc = 0    # total word count
-        for value in self.values():
-            total_wc += int(value)
+        return prob_sample(self)
 
-        for key, value in self.items():
-            percent = (value / total_wc) * 100   # calculate percentage based on freq / total
-            instance = (key, percent)
-            percentages.append(instance)
-        # print(percentages)
-        word = None
-        counter = 0
-        items = self.items()
-        # print(items)
-        rand = random.randint(0, 100)
-
-        for item in percentages:
-            counter += item[1]
-            word = item[0]
-            if counter >= rand:
-                # print(counter, rand)
-                # print(word)
-                return word
-            
-        return 
-
-
-        
 
 def print_histogram(word_list):
     print()
     print('Histogram:')
     print('word list: {}'.format(word_list))
-    # Create a dictogram and display its contents
-    histogram = Dictogram(word_list)
-    print('dictogram: {}'.format(histogram))
+    # Create a listogram and display its contents
+    histogram = Listogram(word_list)
+    print('listogram: {}'.format(histogram))
     print('{} tokens, {} types'.format(histogram.tokens, histogram.types))
     for word in word_list[-2:]:
         freq = histogram.frequency(word)
@@ -90,7 +101,7 @@ def print_histogram_samples(histogram):
     print('Histogram samples:')
     # Sample the histogram 10,000 times and count frequency of results
     samples_list = [histogram.sample() for _ in range(10000)]
-    samples_hist = Dictogram(samples_list)
+    samples_hist = Listogram(samples_list)
     print('samples: {}'.format(samples_hist))
     print()
     print('Sampled frequency and error from observed frequency:')
@@ -105,7 +116,7 @@ def print_histogram_samples(histogram):
     red = '\033[31m'
     reset = '\033[m'
     # Check each word in original histogram
-    for word, count in histogram.items():
+    for word, count in histogram:
         # Calculate word's observed frequency
         observed_freq = count / histogram.tokens
         # Calculate word's sampled frequency
