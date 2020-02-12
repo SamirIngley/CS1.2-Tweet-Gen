@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello_world():
     num_words=10
     sentence=''
-    my_file=('./Code/source.txt')
+    my_file=('source.txt')
     my_histogram=tuple_hist(my_file)
 
     for i in range(num_words):
