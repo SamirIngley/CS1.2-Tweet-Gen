@@ -147,9 +147,9 @@ def unique_words(histo):
     # return counter
 
 def frequency(word, histo):
-    ''' takes a word and histo, returns the frequency of that word in the histo
+    ''' list of lists
+    takes a word and histo, returns the frequency of that word in the histo
     '''
-    return histo[word]
 
     for item in histo:
         if word in item:
@@ -176,7 +176,7 @@ if __name__ == '__main__':
     # print('')
     print(unique_words(list_hist("source.txt")))
     # print(unique_words(counts_list('source.txt')))
-    print('freq of fish: ', frequency('the', listo_histo))
+    print('freq of "the": ', frequency('the', listo_histo))
     # print('freq of tax: ', frequency('tax', list_hist("source.txt")))
     # print('freq of i: ', frequency('i', list_hist("source.txt")))
     # print('benchmark for list hist: ', bench(listo_histo))

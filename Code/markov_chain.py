@@ -38,9 +38,6 @@ class Markov():
             # print(sentence)
             # print(last_word)
             if last_word: # selects word based on probabilities
-                 # dictionary of words to pick from based on last_word's hist
-                
-
                 if last_word in self.states.keys():
                     
                     pickings = self.states[last_word] # dictionary of words to pick from based on last_word's hist
@@ -67,6 +64,9 @@ class Markov():
                     # sentence = space.join(sentence)
                     # return sentence
                     rand = random.randint(0, length-1)
+                    # new_word = (list(self.states)[rand])
+                    # while last_word == new_word:
+                    #     rand2 = random.randint(0, length-1)
                     last_word = (list(self.states)[rand])
 
             else: # assign a last word
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     # print(markov.states)
     # print('')
     # print(markov.chain())
-    print(markov.random_walk(10))
+    print(markov.random_walk(20))
     # rand = random.randint(0, 2000)
     # print(rand)
 

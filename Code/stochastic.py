@@ -3,8 +3,8 @@ from histogram import unique_words, frequency, list_hist
 
 def stoch(histo):
     ''' Lists  list_hist
+    This function returns a list of percentages of word frequencies in a histogram
     Stochastic sampling means taking an element from a given collection at random 
-    This returns a list of percentages of word frequencies in a histogram
     '''
 
     percentages = []
