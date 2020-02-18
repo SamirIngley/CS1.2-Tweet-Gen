@@ -5,19 +5,13 @@ from stochastic import stoch
 from sample import prob_sample
 from histogram import list_hist, tuple_hist
 from clean_text import clean
+from markov_chain import Markov
 app = Flask(__name__)
 
 @app.route('/')
 def sentence_gen():
-    num_words = 15
-    sentence=''
-    my_file=('./Code/source.txt')
-    my_histogram=tuple_hist(my_file)
-
-    for i in range(int(num_words)):
-        word = prob_sample(my_histogram)
-        sentence += ' ' + word
-    return sentence
+    markov = Markov('./Code/source.txt')
+    return markov.random_walk(20)
 
 
 @app.route('/<int:num>')
