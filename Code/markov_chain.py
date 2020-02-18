@@ -41,7 +41,7 @@ class Markov():
                 if last_word in self.states.keys():
                     
                     pickings = self.states[last_word] # dictionary of words to pick from based on last_word's hist
-                    # print('picks, ', pickings)
+                    print('picks, ', pickings)
                     total_wc = 0 # number of words in dictionary for last word
                     for value in pickings.values(): # calculates total word count
                         total_wc += value
@@ -49,11 +49,12 @@ class Markov():
                     # print('last word ', last_word)
                     # print('total_wc ', total_wc)
                     dart = random.randint(0, 100) # dart as percentage
-                    # print('dart ', dart)
+                    print('dart ', dart)
                     counter = 0
-                    while counter < dart: # when we cross the dart, we've passed the value, so the key stored is the winner
-                        for key,value in pickings.items():  # number of times each word appears
-                            # print(key, value)
+                    # when we cross the dart, we've passed the value, so the key stored is the winner
+                    for key,value in pickings.items():  # number of times each word appears
+                        # print(key, value)
+                        if not counter > dart:
                             counter += (value / total_wc) * 100 # add number of times each word appears til we hit the dart
                             # print('counter ', counter)
                             last_word = key # set last_word to the key
@@ -64,6 +65,7 @@ class Markov():
                     # sentence = space.join(sentence)
                     # return sentence
                     rand = random.randint(0, length-1)
+                    print('rand', rand)
                     # new_word = (list(self.states)[rand])
                     # while last_word == new_word:
                     #     rand2 = random.randint(0, length-1)
@@ -90,6 +92,7 @@ if __name__ == '__main__':
     # print('')
     # print(markov.chain())
     print(markov.random_walk(20))
+    # print(markov.__str__())
     # rand = random.randint(0, 2000)
     # print(rand)
 
