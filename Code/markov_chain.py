@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # print(markov.states)
     # print('')
     # print(markov.chain())
-    print(markov.random_walk(20))
+    print(markov.random_walk(8))
     # print(markov.__str__())
     # rand = random.randint(0, 2000)
     # print(rand)
