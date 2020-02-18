@@ -54,7 +54,7 @@ class Dictogram(dict):
         # print(percentages)
         word = None
         counter = 0
-        items = self.items()
+        # items = self.items()
         # print(items)
         rand = random.randint(0, 100)
 
@@ -66,7 +66,7 @@ class Dictogram(dict):
                 # print(word)
                 return word
             
-        return 
+        return ('error')
 
 
         
