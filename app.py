@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/')
 def sentence_gen():
     markov = Markov('./Code/source.txt')
-    return markov.random_walk(20)
+    return markov.random_walk(13)
 
 
 @app.route('/<int:num>')
