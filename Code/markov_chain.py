@@ -27,7 +27,7 @@ class Markov():
 
 
     def random_walk(self, num_words=15):
-        
+        # add code to see what to do if key has no dict. If it's the last word in the sample and is not in gram. 
         sentence = []
         last_word = None
         # print(list(self.states.keys()))
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # print(markov.states)
     # print('')
     # print(markov.chain())
-    print(markov.random_walk(8))
+    print(markov.random_walk(13))
     # print(markov.__str__())
     # rand = random.randint(0, 2000)
     # print(rand)

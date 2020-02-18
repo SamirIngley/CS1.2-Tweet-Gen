@@ -16,14 +16,5 @@ def sentence_gen():
 
 @app.route('/<int:num>')
 def sentence_gen_nums(num):
-    num_words = 15
-    if num:
-        num_words=num
-    sentence=''
-    my_file=('./Code/source.txt')
-    my_histogram=tuple_hist(my_file)
-
-    for i in range(int(num_words)):
-        word = prob_sample(my_histogram)
-        sentence += ' ' + word
-    return sentence
+    markov = Markov('./Code/source.txt')
+    return markov.random_walk(num)
