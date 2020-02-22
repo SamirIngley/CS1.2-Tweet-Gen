@@ -78,8 +78,10 @@ class LinkedList(object):
         # TODO: Append node after tail, if it exists
         node = Node(item)
         self.length += 1
+
         if self.head:
             self.tail.next = node
+            self.tail = node
         else: 
             self.head = node
             self.tail = node
@@ -98,9 +100,11 @@ class LinkedList(object):
 
         # check if empty!
         node = Node(item)
+        self.length += 1
         node.next = self.head
         self.head = node
-        self.length += 1
+        if not self.head.next:
+            self.tail = node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -118,7 +122,10 @@ class LinkedList(object):
         while current and not quality(item):
             current = current.next
 
-        return current.data
+        if current:
+            return current.data
+        else:
+            raise ValueError('Item not found: {}'.format(item))
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -138,14 +145,20 @@ class LinkedList(object):
                 current = current.next
             else:
                 found = True
-        self.length -= 1
 
         if current == None:
-            return ValueError('Item not found: {}'.format(item))
+            raise ValueError('Item not found: {}'.format(item))
         elif prev == None:
             self.head = current.next
-        else:
+            self.length -= 1
+            if current.next == None:
+                self.tail = prev
+        else: 
             prev.next = current.next
+            if current.next == None:
+                self.tail = prev
+            self.length -= 1
+
         return
 
     def replace(self, item, new_item):
