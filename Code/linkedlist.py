@@ -71,23 +71,18 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(n) Why and under what conditions?
-            Because we must loop to the end of the linked list which 
-            requires conferring with each node. 
+        TODO: Running time: O(1) Why and under what conditions?
+            We can go straight to the tail node. Unless we have to go to each node.  
         """
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         node = Node(item)
-
-# use tail !!!! much easier.. just like prepend. 
-        if not self.head:
-            self.head = node
-        else: 
-            current = self.head
-            while current.next: # when current.next does not exit - we've reached the end of the linked list
-                current = current.next
-            current.next = node
         self.length += 1
+        if self.head:
+            self.tail.next = node
+        else: 
+            self.head = node
+            self.tail = node
 
 
     def prepend(self, item):
@@ -120,7 +115,7 @@ class LinkedList(object):
         current = self.head
         item = current.data
 
-        while not quality(item):
+        while current and not quality(item):
             current = current.next
 
         return current.data
@@ -155,7 +150,7 @@ class LinkedList(object):
 
     def replace(self, item, new_item):
         current = self.head
-        found = None
+        found = False
         
         while not found and current:
             if current.data == item:
