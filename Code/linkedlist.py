@@ -3,7 +3,7 @@
 
 class Node(object):
 
-    def __init__(self, data):
+    def __init__(self, data=None):
         """Initialize this node with the given data."""
         self.data = data
         self.next = None
@@ -19,7 +19,6 @@ class LinkedList(object):
         """Initialize this linked list and append the given items, if any."""
         self.head = None  # First node
         self.tail = None  # Last node
-        self.length = 0
         # Append given items
         if items is not None:
             for item in items:
@@ -53,21 +52,21 @@ class LinkedList(object):
         """Return a boolean indicating whether this linked list is empty."""
         return self.head is None
 
-    # def length(self):
-    #     """Return the length of this linked list by traversing its nodes.
-    #     TODO: Running time: O(n) Why and under what conditions?
-    #         Because we have to loop through each node (n number of nodes) until None remain
-    #         in the list to get the length. 
-    #     """
-    #     # TODO: Loop through all nodes and count one for each
-    #     counter = 0
-    #     node = self.head  # O(1) time to assign new variable
-    #     # Loop until node is None, which is one node too far past tail
-    #     while node is not None:  # Always n iterations because no early return
-    #         counter+=1  # O(1) time (on average) to append to list
-    #         # Skip to next node to advance forward in linked list
-    #         node = node.next  # O(1) time to reassign variable
-    #     return counter
+    def length(self):
+        """Return the length of this linked list by traversing its nodes.
+        TODO: Running time: O(n) Why and under what conditions?
+            Because we have to loop through each node (n number of nodes) until None remain
+            in the list to get the length. 
+        """
+        # TODO: Loop through all nodes and count one for each
+        length = 0
+        current = self.head  # O(1) time to assign new variable
+        # Loop until node is None, which is one node too far past tail
+        while current:  # Always n iterations because no early return
+            length+=1  # O(1) time (on average) to append to list
+            # Skip to next node to advance forward in linked list
+            current = current.next  # O(1) time to reassign variable
+        return length
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -77,7 +76,6 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         node = Node(item)
-        self.length += 1
 
         if self.head:
             self.tail.next = node
@@ -100,7 +98,6 @@ class LinkedList(object):
 
         # check if empty!
         node = Node(item)
-        self.length += 1
         node.next = self.head
         self.head = node
         if not self.head.next:
@@ -117,15 +114,14 @@ class LinkedList(object):
         # TODO: Check if node's data satisfies given quality function
 
         current = self.head
-        item = current.data
 
-        while current and not quality(item):
+        # exit if we found the value or we're not current
+        while current and not quality(current.data):
             current = current.next
 
         if current:
             return current.data
-        else:
-            raise ValueError('Item not found: {}'.format(item))
+
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -150,14 +146,12 @@ class LinkedList(object):
             raise ValueError('Item not found: {}'.format(item))
         elif prev == None:
             self.head = current.next
-            self.length -= 1
             if current.next == None:
                 self.tail = prev
         else: 
             prev.next = current.next
             if current.next == None:
                 self.tail = prev
-            self.length -= 1
 
         return
 
@@ -175,6 +169,7 @@ class LinkedList(object):
             return ValueError('Item not found: {}'.format(item))
         else:
             current.data = new_item
+            
 
 def test_linked_list():
     ll = LinkedList()
