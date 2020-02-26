@@ -4,7 +4,6 @@ import time as t #import the time module
 
 def bench(func):
     start_time = t.time()
-    func
     end_time = t.time()
     total_run_time = end_time - start_time
     return total_run_time 
