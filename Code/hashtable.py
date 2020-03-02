@@ -1,6 +1,6 @@
 #!python
 
-from linkedlist import LinkedList
+from linkedlist import LinkedList, Node
 
 
 class HashTable(object):
@@ -66,7 +66,7 @@ class HashTable(object):
         # TODO: Count number of key-value entries in each bucket
         counter = 0
         for bucket in self.buckets:
-            for key, value in bucket.items():
+            for item in bucket.items():
                 counter += 1
         return counter
 
@@ -79,10 +79,13 @@ class HashTable(object):
         # TODO: Find bucket where given key belongs
         # TODO: Check if key-value entry exists in bucket
 
-        for item_key, value in self.buckets[self._bucket_index(key)]:
-           if item_key == key:
-               return True
-        return False
+        try:
+            self.get(key)        
+        except: 
+            return False
+
+        return True
+
 
 
 
@@ -95,9 +98,11 @@ class HashTable(object):
         # TODO: Otherwise, raise error to tell user get failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
         bucket = self.buckets[self._bucket_index(key)]
-        bucket.is_empty()
-        bucket.find(key)
-         
+        
+        if not bucket.is_empty():
+            return bucket.find(lambda item: item == key)
+        else:
+            raise KeyError('Key not found: {}'.format(key))
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
@@ -107,12 +112,13 @@ class HashTable(object):
         # TODO: If found, update value associated with given key
         # TODO: Otherwise, insert given key-value entry into bucket
         bucket = self.buckets[self._bucket_index(key)]
-        node = bucket.find(key)
+        data = bucket.find(lambda item: item == key)
 
-        if node == ValueError:
-            bucket.append(node)
+        if data != None:
+            bucket.replace(data, value)
         else:
-            node.replace(node.data, value)
+            bucket.append((key, value))
+
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.

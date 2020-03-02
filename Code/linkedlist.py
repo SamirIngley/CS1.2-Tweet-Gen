@@ -3,7 +3,7 @@
 
 class Node(object):
 
-    def __init__(self, data=None):
+    def __init__(self, data):
         """Initialize this node with the given data."""
         self.data = data
         self.next = None
@@ -104,7 +104,7 @@ class LinkedList(object):
             self.tail = node
 
     def find(self, quality):
-        """Return an item from this linked list satisfying the given quality.
+        """Return an item's data from this linked list satisfying the given quality of None if DNE.
         TODO: Best case running time: O(1) Why and under what conditions?
         self.head is contains the item when quality(item) is True
         TODO: Worst case running time: O(n) Why and under what conditions?
@@ -116,12 +116,11 @@ class LinkedList(object):
         current = self.head
 
         # exit if we found the value or we're not current
-        while current and not quality(current.data):
+        while current != None:
+            if quality(current.data):
+                return current.data
             current = current.next
-
-        if current:
-            return current.data
-
+        return None
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -156,6 +155,7 @@ class LinkedList(object):
         return
 
     def replace(self, item, new_item):
+        """ takes an old item and new item and replaces the old with the new if the old exists. If it does not, we append the item """
         current = self.head
         found = False
         
@@ -165,10 +165,10 @@ class LinkedList(object):
             else:
                 current = current.next
         
-        if current == None:
-            return ValueError('Item not found: {}'.format(item))
-        else:
+        if current:
             current.data = new_item
+        else:
+            return None
             
 
 def test_linked_list():
