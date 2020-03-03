@@ -117,7 +117,7 @@ class LinkedList(object):
 
         # exit if we found the value or we're not current
         while current != None:
-            if quality(current.data):
+            if quality(current.data[0]):
                 return current.data
             current = current.next
         return None
@@ -154,13 +154,13 @@ class LinkedList(object):
 
         return
 
-    def replace(self, item, new_item):
+    def replace(self, old_item, new_item):
         """ takes an old item and new item and replaces the old with the new if the old exists. If it does not, we append the item """
         current = self.head
         found = False
         
         while not found and current:
-            if current.data == item:
+            if current.data[0] == old_item[0]:
                 found = True
             else:
                 current = current.next

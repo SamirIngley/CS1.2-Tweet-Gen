@@ -80,7 +80,8 @@ class HashTable(object):
         # TODO: Check if key-value entry exists in bucket
 
         try:
-            self.get(key)        
+            var = self.get(key)   
+            if var # WORK ON ME !!!  
         except: 
             return False
 
@@ -103,6 +104,7 @@ class HashTable(object):
             return bucket.find(lambda item: item == key)
         else:
             raise KeyError('Key not found: {}'.format(key))
+
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
