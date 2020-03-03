@@ -81,9 +81,10 @@ class HashTable(object):
 
         try:
             var = self.get(key)   
-            if var # WORK ON ME !!!  
+            if not var:
+                return False                
         except: 
-            return False
+            return False        
 
         return True
 
@@ -101,7 +102,12 @@ class HashTable(object):
         bucket = self.buckets[self._bucket_index(key)]
         
         if not bucket.is_empty():
-            return bucket.find(lambda item: item == key)
+            var = bucket.find(lambda item: item == key)
+            if var == None:
+                raise KeyError('Key not found: {}'.format(key))
+            else:
+                print(var)
+                return var[1]
         else:
             raise KeyError('Key not found: {}'.format(key))
 
@@ -117,7 +123,7 @@ class HashTable(object):
         data = bucket.find(lambda item: item == key)
 
         if data != None:
-            bucket.replace(data, value)
+            bucket.replace(data, (key,value))
         else:
             bucket.append((key, value))
 
@@ -169,4 +175,14 @@ def test_hash_table():
     return
 
 if __name__ == '__main__':
-    test_hash_table()
+    #test_hash_table()
+    ht = HashTable()
+    ht.set('I', 1)
+    ht.set('V', 4)
+    ht.set('X', 9)
+    ht.set('V', 5)  # Update value
+    ht.set('X', 10)  # Update value
+    ht.get('I') == 1
+    ht.get('V') == 5
+    ht.get('X') == 10
+    ht.length() == 3 

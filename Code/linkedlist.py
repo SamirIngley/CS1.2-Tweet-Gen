@@ -117,6 +117,7 @@ class LinkedList(object):
 
         # exit if we found the value or we're not current
         while current != None:
+            print("Current", current)
             if quality(current.data[0]):
                 return current.data
             current = current.next
