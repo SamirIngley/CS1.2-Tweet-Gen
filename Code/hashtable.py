@@ -128,7 +128,7 @@ class HashTable(object):
         # TODO: If found, delete entry associated with given key
         # TODO: Otherwise, raise error to tell user delete failed
         # Hint: raise KeyError('Key not found: {}'.format(key))
-        bucket = self._bucket_index(key) # hash the key to give us the bucket
+        bucket = self.buckets[self._bucket_index(key)] # hash the key to give us the bucket
         bucket.delete(key)
 
                 

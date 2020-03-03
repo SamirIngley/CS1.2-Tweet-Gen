@@ -134,15 +134,15 @@ class LinkedList(object):
         prev = None
         found = False
 
-        while not found and current: # find and set the right boundaries to skip
-            if current.data != item:
+        while not found and current != None: # find and set the right boundaries to skip
+            if current.data[0] != item:
                 prev = current
                 current = current.next
             else:
                 found = True
 
         if current == None:
-            raise ValueError('Item not found: {}'.format(item))
+            raise KeyError('Item not found: {}'.format(item))
         elif prev == None:
             self.head = current.next
             if current.next == None:
