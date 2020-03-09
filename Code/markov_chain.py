@@ -22,40 +22,30 @@ class Markov():
             last_word = word # set word as last_word
 
 
-        current = None
-        prev = None
+        for i,k in zip(self.corpus[0::2], self.corpus[1::2]):  # in the [ ] start at the first value, skip ahead by the last value
+            print(i, k)
+            
+        for i,k in zip(self.corpus, self.corpus[1:]):  # in the [ ] start at the first value, skip ahead by the last value
+            print("SECOND VERSION", i, k)
 
-        for i,k in zip(data[0::2], data[1::2]):  # in the [ ] start at the first value, skip ahead by the last value
-                print str(i), str(k),
+        # current = word
+        # if prev != None:
 
-        for word in self.corpus:
+        #     instance = (prev, current)
 
-            current = word
-            if prev != None:
- 
-                instance = (prev, current)
+        #     if instance not in self.states:
+        #         self.states[instance] = Dictogram()
 
-                if instance not in self.states:
-                    self.states[instance] = Dictogram()
-
-                if len(self.states) == 0:
-                    continue
-
-    
-                    
-
-                self.states[instance].add_count()
+        #     if len(self.states) == 0:
+        #         continue
 
 
-            prev = word 
                 
 
+        #     self.states[instance].add_count()
 
 
-
-
-
-
+        # prev = word 
 
              
     def __str__(self):
