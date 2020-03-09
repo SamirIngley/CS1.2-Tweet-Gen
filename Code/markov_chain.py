@@ -21,6 +21,42 @@ class Markov():
 
             last_word = word # set word as last_word
 
+
+        current = None
+        prev = None
+
+        for i,k in zip(data[0::2], data[1::2]):  # in the [ ] start at the first value, skip ahead by the last value
+                print str(i), str(k),
+
+        for word in self.corpus:
+
+            current = word
+            if prev != None:
+ 
+                instance = (prev, current)
+
+                if instance not in self.states:
+                    self.states[instance] = Dictogram()
+
+                if len(self.states) == 0:
+                    continue
+
+    
+                    
+
+                self.states[instance].add_count()
+
+
+            prev = word 
+                
+
+
+
+
+
+
+
+
              
     def __str__(self):
         return print(str(self.states))
@@ -51,7 +87,7 @@ class Markov():
 if __name__ == '__main__':
     source = 'one fish two fish red fish blue fish'
     markov = Markov('source.txt')
-    # print(markov.states)
+    print(markov.states)
     # print('')
     # print(markov.chain())
     print(markov.random_walk(13))
