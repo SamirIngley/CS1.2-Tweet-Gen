@@ -11,32 +11,42 @@ add the next word while removing the last word to traverse the corpus and save t
 
 class Markov():
     def __init__(self, corpus):
-        self.corpus = clean(corpus)
+        # self.corpus = clean(corpus)
+        self.corpus = corpus
         self.states = {}
         self.chain()
     
     def chain(self):
-
+        ''' Nth order markov chain '''
         
         # build the chain with states
         queue = []
         prev_q = []
 
-        for word in self.corpus:
-        
-            while len(queue) < 2:
-                queue.append(word)
+        for word in self.corpus.split():
             
-            tup = tuple(prev_q)
+            print(word)
+            if len(queue) < 2:
+                queue.append(word)
+                continue
+            
             tup_q = tuple(queue)
-            if tup is not None:
-                if tup not in self.states:
-                    self.states[tup] = Dictogram()
-                self.states[tup].add_count(tup_q)
+            print('queue: ', tup_q)
+
+            if len(prev_q) > 0:
+                if tup_p not in self.states:
+                    self.states[tup_p] = Dictogram()
+                self.states[tup_p].add_count(tup_q)
 
             prev_q = queue
-            queue.pop(0)
+            tup_p = tuple(prev_q)
+            print('prev: ', tup_p)
 
+            queue.pop(0)
+            queue.append(word)
+
+
+        # ------------------FIRST ORDER MARKOV ----------------
         # last_word = None
  
         # for word in self.corpus:
@@ -77,11 +87,12 @@ class Markov():
 
 if __name__ == '__main__':
     source = 'one fish two fish red fish blue fish'
-    markov = Markov('source.txt')
+    markov = Markov('I went right, he went left. I went right, I went left')
+    # markov = Markov('source.txt')
     print(markov.states)
     # print('')
     # print(markov.chain())
-    print(markov.random_walk(13))
+    # print(markov.random_walk(13))
     # print(markov.__str__())
     # rand = random.randint(0, 2000)
     # print(rand)
