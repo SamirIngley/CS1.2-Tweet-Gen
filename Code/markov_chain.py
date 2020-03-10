@@ -11,8 +11,8 @@ add the next word while removing the last word to traverse the corpus and save t
 
 class Markov():
     def __init__(self, corpus):
-        # self.corpus = clean(corpus)
-        self.corpus = corpus
+        self.corpus = clean(corpus)
+        # self.corpus = corpus
         self.states = {}
         self.chain()
     
@@ -23,7 +23,7 @@ class Markov():
         queue = []
         prev_q = []
 
-        for word in self.corpus.split():
+        for word in self.corpus:
             
             print(word)
             if len(queue) < 2:
@@ -31,7 +31,7 @@ class Markov():
                 continue
             
             tup_q = tuple(queue)
-            print('queue: ', tup_q)
+            # print('queue: ', tup_q)
 
             if len(prev_q) > 0:
                 if tup_p not in self.states:
@@ -40,7 +40,7 @@ class Markov():
 
             prev_q = queue
             tup_p = tuple(prev_q)
-            print('prev: ', tup_p)
+            # print('prev: ', tup_p)
 
             queue.pop(0)
             queue.append(word)
@@ -78,7 +78,7 @@ class Markov():
                 last_word = random.choice(list(self.states.keys()))
                 # print(last_word)
 
-            sentence.append(last_word)
+            sentence.append(last_word[-1])
 
         space = ' '
         sentence = space.join(sentence)
@@ -86,13 +86,13 @@ class Markov():
         return sentence
 
 if __name__ == '__main__':
-    source = 'one fish two fish red fish blue fish'
-    markov = Markov('I went right, he went left. I went right, I went left')
-    # markov = Markov('source.txt')
+    # source = 'one fish two fish red fish blue fish'
+    # markov = Markov('I went right, he went left. I went right, I went left')
+    markov = Markov('source.txt')
     print(markov.states)
     # print('')
     # print(markov.chain())
-    # print(markov.random_walk(13))
+    print(markov.random_walk(13))
     # print(markov.__str__())
     # rand = random.randint(0, 2000)
     # print(rand)
