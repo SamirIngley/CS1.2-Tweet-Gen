@@ -10,12 +10,12 @@ add the next word while removing the last word to traverse the corpus and save t
 '''
 
 class Markov():
-    def __init__(self, corpus, size):
+    def __init__(self, corpus):
         self.corpus = clean(corpus)
         # self.corpus = corpus
         self.states = {}
         self.chain()
-        self.size = size
+        # self.size = size
     
     def chain(self):
         ''' Nth order markov chain '''
