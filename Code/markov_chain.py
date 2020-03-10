@@ -27,7 +27,7 @@ class Markov():
         for word in self.corpus:
             
             print(word)
-            if len(queue) < 2:
+            if len(queue) < 3:
                 queue.append(word)
                 continue
             
