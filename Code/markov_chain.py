@@ -10,13 +10,32 @@ add the next word while removing the last word to traverse the corpus and save t
 '''
 
 class Markov():
-    def __init__(self, size, corpus):
+    def __init__(self, corpus):
         self.corpus = clean(corpus)
         self.states = {}
         self.chain()
-        self.size = size
     
     def chain(self):
+
+        
+        # build the chain with states
+        queue = []
+        prev_q = []
+
+        for word in self.corpus:
+        
+            while len(queue) < 2:
+                queue.append(word)
+            
+            tup = tuple(prev_q)
+            tup_q = tuple(queue)
+            if tup is not None:
+                if tup not in self.states:
+                    self.states[tup] = Dictogram()
+                self.states[tup].add_count(tup_q)
+
+            prev_q = queue
+            queue.pop(0)
 
         # last_word = None
  
@@ -30,24 +49,6 @@ class Markov():
         #     last_word = word # set word as last_word
 
 
-        # build the chain with states
-        queue = []
-        prev_q = []
-
-        for word in self.corpus:
-        
-            while len(queue) < self.size:
-                queue.append(word)
-            
-            if prev_q is not None:
-                if prev_q not in self.states:
-                    self.states[prev_q] = Dictogram()
-                self.states[prev_q].add_count(queue)
-
-            prev_q = queue
-            queue.pop(0)
-
-             
     def __str__(self):
         return print(str(self.states))
 
@@ -76,7 +77,7 @@ class Markov():
 
 if __name__ == '__main__':
     source = 'one fish two fish red fish blue fish'
-    markov = Markov(2,'source.txt')
+    markov = Markov('source.txt')
     print(markov.states)
     # print('')
     # print(markov.chain())
