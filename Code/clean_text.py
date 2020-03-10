@@ -9,13 +9,13 @@ def clean(source):
         # print(word_list)
 
         # removes punctuation and makes all lowercase
-        punctuations = '''()[]{};:'"\<>/?@#$%^&*_~.!,'''
+        numberspunctuations = '''0123456789()[]{};:'"\<>/?@#$%^&*_~.!,'''
         # removed punct: - 
 
         for word in word_list:
             string = []
             for char in word:
-                if char not in punctuations:
+                if char not in numberspunctuations:
                     string += char.lower() # lowercase char added to string
                 # elif char == '...':
                 #     string += (' ')     
