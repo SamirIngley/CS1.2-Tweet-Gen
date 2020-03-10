@@ -27,7 +27,7 @@ class Markov():
         for word in self.corpus:
             
             print(word)
-            if len(queue) < self.size:
+            if len(queue) < 2:
                 queue.append(word)
                 continue
             
@@ -89,7 +89,7 @@ class Markov():
 if __name__ == '__main__':
     # source = 'one fish two fish red fish blue fish'
     # markov = Markov('I went right, he went left. I went right, I went left')
-    markov = Markov('source.txt', 4)
+    markov = Markov('source.txt')
     print(markov.states)
     # print('')
     # print(markov.chain())
