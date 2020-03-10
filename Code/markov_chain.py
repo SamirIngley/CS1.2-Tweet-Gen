@@ -10,11 +10,12 @@ add the next word while removing the last word to traverse the corpus and save t
 '''
 
 class Markov():
-    def __init__(self, corpus):
+    def __init__(self, corpus, size):
         self.corpus = clean(corpus)
         # self.corpus = corpus
         self.states = {}
         self.chain()
+        self.size = size
     
     def chain(self):
         ''' Nth order markov chain '''
@@ -26,7 +27,7 @@ class Markov():
         for word in self.corpus:
             
             print(word)
-            if len(queue) < 2:
+            if len(queue) < self.size:
                 queue.append(word)
                 continue
             
@@ -88,7 +89,7 @@ class Markov():
 if __name__ == '__main__':
     # source = 'one fish two fish red fish blue fish'
     # markov = Markov('I went right, he went left. I went right, I went left')
-    markov = Markov('source.txt')
+    markov = Markov('source.txt', 4)
     print(markov.states)
     # print('')
     # print(markov.chain())
