@@ -22,7 +22,7 @@ tweeter = Tweeter(consumer_key, consumer_secret, access_token, access_token_secr
 @app.route('/')
 def sentence_gen():
     markov = Markov('./Code/source.txt')
-    sentence = markov.random_walk(21)
+    sentence = markov.random_walk(31)
     tweeter.send(sentence)
     return sentence
 
