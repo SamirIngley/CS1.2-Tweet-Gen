@@ -1,4 +1,4 @@
-Generates Random Tweets using a Markov Chain!
+Generates Random Tweets using an nth order Markov Chain!
 
 https://markov-tweet-generator.herokuapp.com/
 
