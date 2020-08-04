@@ -2,7 +2,7 @@ Generates Random Tweets using an nth order Markov Chain!
 
 https://markov-tweet-generator.herokuapp.com/
 
-[twwpic](tweepic.png)
+![twwpic](tweepic.png)
 
 # CS 1.2: Intro to Data Structures
 
